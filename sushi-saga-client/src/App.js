@@ -25,17 +25,27 @@ class App extends Component {
     .then(r => r.json())
     .then(sushis => this.setState({sushis}, () => {
       this.grabFourSushis()
-      console.log(this.state.sushis)
     }))
   }
 
   grabFourSushis = () => {
-    let firstFour = this.state.sushis.splice(0,4)
     let prevStateSushi = this.state.sushis
-    this.setState({
-      sushis: prevStateSushi,
-      foursushi: firstFour
-    })
+    let firstFour;
+    if (prevStateSushi.length === 0) {
+      this.fetchSushi()
+      firstFour = this.state.sushis.splice(0,4)
+      let updatedState = this.state.sushis
+      this.setState({
+        sushis: updatedState,
+        foursushi: firstFour
+      })
+    } else {
+      firstFour = this.state.sushis.splice(0,4)
+      this.setState({
+        sushis: prevStateSushi,
+        foursushi: firstFour
+      })
+    }
   }
 
   handleClick = () => {
