@@ -49,7 +49,6 @@ class App extends Component {
   }
 
   handleClick = () => {
-    console.log('firing')
     this.grabFourSushis()
   }
 
@@ -66,6 +65,7 @@ class App extends Component {
   }
 
   render() {
+    // console.log(this.state.sushis.length)
     return (
       <div className="app">
         <SushiContainer
